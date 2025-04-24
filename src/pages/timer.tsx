@@ -26,7 +26,6 @@ export default function Timer() {
     }, []);
 
     useEffect(() => {
-        console.log(history);
         setAverageFive(updateAO5());
         setAverageTwelve(updateAO12());
         setAverageHundred(updateAO100());
@@ -117,7 +116,6 @@ export default function Timer() {
     };
 
     const removeSingle = () => {
-        console.log("urmom");
         if (history.length === 0) {
             return;
         }
@@ -283,24 +281,16 @@ export default function Timer() {
         let useTime: number = time;
         let minutes: number = Math.floor(useTime / 60);
         useTime = useTime % 60;
-        // let seconds: number = Math.floor(useTime % 60);
-        // useTime = useTime % 60;
-        // let milliseconds: number = ;
-        // console.log(minutes, seconds, milliseconds);
 
         const minutesStr: string = minutes < 10 ? "0" + minutes : "" + minutes;
-        // const secondsStr: string = seconds < 10 ? "0" + seconds : "" + seconds;
-        // let millisecondsStr: string = "" + milliseconds;
-        // millisecondsStr = millisecondsStr.substring(4,6);
 
-        return useTime < 10 ? minutesStr + ":0" + useTime : minutesStr + ":" + useTime;
+        return useTime < 10 ? minutesStr + ":0" + useTime.toFixed(2) : minutesStr + ":" + useTime.toFixed(2);
     }
 
-    const timesTable = history.map((time) => {
-        let indexOfTime = history.indexOf(time);
+    const timesTable = history.map((time, index) => {
         return (
-            <tr className="border-b-1">
-                <td id="solve-number" className="bg-[#B47C32] text-center"> { indexOfTime + 1} </td>
+            <tr className="border-b-1" key={index}>
+                <td id="solve-number" className="bg-[#B47C32] text-center"> { index + 1} </td>
                 <td id="solve-time" className="bg-[#B47C32] text-center"> { time } </td>
             </tr>
         )
@@ -344,7 +334,7 @@ export default function Timer() {
             <div id="grid-item3" className="bg-[#FAEBD7] flex flex-col row-start-2 row-end-5 col-start-2 col-end-5">
 
                 <div id="scramble" className="h-[25%] border-1 m-0 flex justify-center items-center text-md">
-                    <h1>{scramble}</h1>
+                    <h1 className="text-center">{scramble}</h1>
                 </div>
 
                 <div id="stopwatch" className="h-[75%] border-1 flex justify-center items-center">

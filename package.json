@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "rubiks_timer_v2": "file:",
     "tailwindcss": "^4.1.4"
   },
   "devDependencies": {
